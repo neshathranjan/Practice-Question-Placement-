@@ -139,7 +139,7 @@ This program converts a **binary number of variable length (N bits)** into its *
 
 ---
 
-## Code
+## Code-1
 
 ```java
 import java.util.*;
@@ -170,6 +170,22 @@ class Main {
 }
 ```
 
+Optimized Code
+```
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+		String word=sc.nextLine();
+		char ch=sc.next().charAt(0);
+		int first=word.indexOf(ch);
+		int second = word.indexOf(ch, first+1);
+		System.out.println(second);
+
+	}
+}
+```
 ---
 
 ## Working Explanation
