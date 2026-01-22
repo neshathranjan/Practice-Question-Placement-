@@ -1,5 +1,5 @@
 
-# 1Alphabet Position Sum
+# 1.Alphabet Position Sum
 
 ## Description
 Given a number `s` and `s` lowercase alphabet characters, convert each character to its alphabetical position  
@@ -34,6 +34,7 @@ class Main {
         System.out.println(total);
     }
 }
+```
 ## Sample Input
 5
 a b c d e
