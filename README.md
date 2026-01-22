@@ -1,9 +1,10 @@
 # Java Practice Problems
 
 ## Navigation
-- [Alphabet Position Sum](#qn1)
-- [Reverse Words in a Sentence](#qn2)
-- [Binary to Decimal Conversion (N-bit)](#qn3)
+- [1.Alphabet Position Sum](#qn1)
+- [2.Reverse Words in a Sentence](#qn2)
+- [3.Binary to Decimal Conversion (N-bit)](#qn3)
+- [4.Find Index of Second Occurrence of a Character](#qn4)
 ---
 
 <a id="qn1"></a>
@@ -152,7 +153,7 @@ class Main {
 
         for (int i = 0; i < n; i++) {
             arr[i] = in.nextInt();
-            if (arr[i] > 1) return;
+            if (arr[i]!=0 || arr[i]!=1) return;
         }
 
         for (int i = n - 1; i >= 0; i--) {
@@ -233,3 +234,94 @@ for (int i = 0; i < n; i++) {
 [⬆ Back to Navigation](#navigation)
 
 ---
+## 4. Find Index of Second Occurrence of a Character
+
+<a id="qn4"></a>
+
+### Description
+
+Given a string and a character, find the **index of the second occurrence** of the given character in the string.
+
+* If the character occurs **at least two times**, print the index of the second occurrence.
+* Otherwise, print `-1`.
+
+---
+
+### Input Format
+
+* A string
+* A single character
+
+---
+
+### Output Format
+
+* Integer representing the index of the second occurrence
+* `-1` if the character occurs fewer than two times
+
+---
+
+### Code
+
+```java
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+        char ch = in.next().charAt(0);
+        int count = 0;
+        int result = -1;
+
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ch) {
+                count++;
+                result = i;
+            }
+
+            if (count == 2) {
+                System.out.println(result);
+                break;
+            }
+        }
+
+        if (count != 2) {
+            System.out.println(-1);
+        }
+    }
+}
+```
+
+---
+
+### Sample Input
+
+```
+programming
+g
+```
+
+---
+
+### Sample Output
+
+```
+10
+```
+
+---
+
+### Explanation
+
+The character `'g'` appears at indices **3** and **10**.
+The index of the **second occurrence** is **10**, which is printed.
+
+---
+
+### Constraints
+
+* String length ≥ 1
+* Input character must be a single character
+
+---
+[⬆ Back to Navigation](#navigation)
