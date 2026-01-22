@@ -170,7 +170,7 @@ class Main {
 }
 ```
 
-Optimized Code
+# Optimized Code
 ```
 import java.util.*;
 public class Main
