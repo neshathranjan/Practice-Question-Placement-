@@ -1,18 +1,26 @@
+# Java Practice Problems
 
-# 1.Alphabet Position Sum
+## Navigation
+- [Alphabet Position Sum](#qn1)
+- [Reverse Words in a Sentence](#qn2)
 
-## Description
+---
+
+<a id="qn1"></a>
+## 1. Alphabet Position Sum
+
+### Description
 Given a number `s` and `s` lowercase alphabet characters, convert each character to its alphabetical position  
 (`a = 1, b = 2, ..., z = 26`) and print the sum of all positions.
 
-## Input Format
-- Integer `s` — number of characters
+### Input Format
+- Integer `s` — number of characters  
 - `s` lowercase characters
 
-## Output Format
+### Output Format
 - Integer representing the sum of alphabetical positions
 
-## Code
+### Code
 ```java
 import java.util.*;
 class Main {
@@ -27,36 +35,54 @@ class Main {
 
         int total = 0;
         for (int i = 0; i < s; i++) {
-            int val = (int) alphaNum[i] - 96; //96 means 'a'-1 in ASCII Value.
+            int val = alphaNum[i] - 96; // 'a' = 97 in ASCII
             total += val;
         }
 
         System.out.println(total);
     }
 }
+````
+
+### Sample Input
+
 ```
-## Sample Input
 5
-
 a b c d e
-## Sample Output
+```
+
+### Sample Output
+
+```
 15
+```
 
-## Constraints
-- Characters must be lowercase (`a` to `z`)
+### Constraints
 
-# 2.Reverse Words in a Sentence
+* Characters must be lowercase (`a` to `z`)
 
-## Description
+[⬆ Back to Navigation](#navigation)
+
+---
+
+<a id="qn2"></a>
+
+## 2. Reverse Words in a Sentence
+
+### Description
+
 Given a sentence, reverse the order of its words and print the result.
 
-## Input Format
-- A single line string containing words separated by spaces
+### Input Format
 
-## Output Format
-- The sentence with words in reverse order
+* A single line string containing words separated by spaces
 
-## Code
+### Output Format
+
+* The sentence with words in reverse order
+
+### Code
+
 ```java
 import java.util.*;
 class Main {
@@ -64,16 +90,28 @@ class Main {
         Scanner in = new Scanner(System.in);
         String s1 = in.nextLine();
         String[] part = s1.split(" ");
-        int s = part.length - 1;
 
-        for (int i = s; i >= 0; i--) {
+        for (int i = part.length - 1; i >= 0; i--) {
             System.out.print(part[i] + " ");
         }
     }
 }
 ```
-# Sample Input
-Java is powerful
 
-# Sample Output
+### Sample Input
+
+```
+Java is powerful
+```
+
+### Sample Output
+
+```
 powerful is Java
+```
+
+[⬆ Back to Navigation](#navigation)
+
+```
+
+---
