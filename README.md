@@ -37,6 +37,7 @@ class Main {
 ```
 ## Sample Input
 5
+
 a b c d e
 ## Sample Output
 15
