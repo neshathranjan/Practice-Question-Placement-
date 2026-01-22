@@ -5,6 +5,7 @@
 - [2.Reverse Words in a Sentence](#qn2)
 - [3.Binary to Decimal Conversion (N-bit)](#qn3)
 - [4.Find Index of Second Occurrence of a Character](#qn4)
+- [5.Check Order of an Array](#qn5)
 ---
 
 <a id="qn1"></a>
@@ -335,6 +336,105 @@ The index of the **second occurrence** is **10**, which is printed.
 
 * String length ≥ 1
 * Input character must be a single character
+
+---
+[⬆ Back to Navigation](#navigation)
+
+# 5.Check Order of an Array
+<a id ="qn5"></a>
+## Description
+Given an integer array, determine whether the elements are arranged in **Ascending**, **Descending**, or **Mixed** order.
+
+## Input Format
+- Integer `n` — number of elements
+- `n` integers representing the array elements
+
+## Output Format
+- Print one of the following:
+  - `Ascending`
+  - `Descending`
+  - `Mixed`
+
+## Code
+```java
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        boolean ascending = true;
+        boolean descending = true;
+
+        for (int i = 1; i < n; i++) {
+            if (arr[i] < arr[i - 1]) {
+                ascending = false;
+            } else if (arr[i] > arr[i - 1]) {
+                descending = false;
+            }
+        }
+
+        if (ascending && !descending) {
+            System.out.println("Ascending");
+        } else if (!ascending && descending) {
+            System.out.println("Descending");
+        } else if (ascending && descending) {
+            System.out.println("Ascending");
+        } else {
+            System.out.println("Mixed");
+        }
+    }
+}
+````
+
+## Sample Input 1
+
+```
+5
+1 2 3 4 5
+```
+
+## Sample Output 1
+
+```
+Ascending
+```
+
+## Sample Input 2
+
+```
+5
+9 7 5 3 1
+```
+
+## Sample Output 2
+
+```
+Descending
+```
+
+## Sample Input 3
+
+```
+5
+1 3 2 5 4
+```
+
+## Sample Output 3
+
+```
+Mixed
+```
+
+## Constraints
+
+* `1 ≤ n`
+* Array contains integers only
 
 ---
 [⬆ Back to Navigation](#navigation)
