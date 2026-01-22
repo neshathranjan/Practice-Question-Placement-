@@ -170,24 +170,6 @@ class Main {
 }
 ```
 
-# Optimized Code
-```
-import java.util.*;
-public class Main
-{
-	public static void main(String[] args) {
-	    Scanner sc=new Scanner(System.in);
-		String word=sc.nextLine();
-		char ch=sc.next().charAt(0);
-		int first=word.indexOf(ch);
-		int second = word.indexOf(ch, first+1);
-		System.out.println(second);
-
-	}
-}
-```
----
-
 ## Working Explanation
 
 ### Step 1: Read Input
@@ -324,7 +306,22 @@ g
 ```
 10
 ```
+# Optimized Code
+```
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+		String word=sc.nextLine();
+		char ch=sc.next().charAt(0);
+		int first=word.indexOf(ch);
+		int second = word.indexOf(ch, first+1);
+		System.out.println(second);
 
+	}
+}
+```
 ---
 
 ### Explanation
