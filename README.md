@@ -9,7 +9,7 @@
 - [6.Count Numbers Divisible by 5 but Not by 10](#qn6)
 - [7.Count Numbers Without Digit 5](#qn7)
 - [8.Sum of Array Elements Excluding Minimum and Maximum](#qn8)
----
+- [9. Count Sign Changes in an Array](#qn9)
 
 <a id="qn1"></a>
 ## 1. Alphabet Position Sum
@@ -630,3 +630,58 @@ class Main {
 * `s ≥ 3`
 * Array contains integers only
 ---
+
+## 9. Count Sign Changes in an Array
+
+[⬅ Back to Index](#index)
+<a id="qn9"></a>
+### Description
+Given an integer array, count how many times the sign of consecutive elements changes  
+(from positive to negative or negative to positive).
+
+### Input Format
+- Integer `s` — number of elements  
+- `s` integers
+
+### Output Format
+- Integer representing the number of sign changes
+
+### Code
+```java
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int s = in.nextInt();
+        int[] arr = new int[s];
+
+        for (int i = 0; i < s; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        int count = 0;
+        for (int i = 1; i < s; i++) {
+            if ((arr[i - 1] >= 0 && arr[i] < 0) ||
+                (arr[i - 1] < 0 && arr[i] >= 0)) {
+                count++;
+            }
+        }
+
+        System.out.println(count);
+    }
+}
+```
+# Sample Input
+```
+6
+
+1 -2 3 -4 5 -6
+```
+# Sample Output
+```
+5
+```
+# Constraints
+s ≥ 1
+
+Array contains integers only
