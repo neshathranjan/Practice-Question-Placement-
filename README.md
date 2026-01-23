@@ -1,440 +1,75 @@
-# Java Practice Problems
+# SQL Student Database – README
 
-## Navigation
-- [1.Alphabet Position Sum](#qn1)
-- [2.Reverse Words in a Sentence](#qn2)
-- [3.Binary to Decimal Conversion (N-bit)](#qn3)
-- [4.Find Index of Second Occurrence of a Character](#qn4)
-- [5.Check Order of an Array](#qn5)
----
+## Database Creation
 
-<a id="qn1"></a>
-## 1. Alphabet Position Sum
+* `CREATE DATABASE college;`
+  Creates a new database named **college**.
 
-### Description
-Given a number `s` and `s` lowercase alphabet characters, convert each character to its alphabetical position  
-(`a = 1, b = 2, ..., z = 26`) and print the sum of all positions.
+* `USE college;`
+  Switches the active database to **college**.
 
-### Input Format
-- Integer `s` — number of characters  
-- `s` lowercase characters
+## Table Creation
 
-### Output Format
-- Integer representing the sum of alphabetical positions
+* `CREATE TABLE Student (...);`
+  Creates a **Student** table with constraints like primary key, NOT NULL, and age check.
 
-### Code
-```java
-import java.util.*;
-class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int s = in.nextInt();
-        char[] alphaNum = new char[s];
+## Data Retrieval
 
-        for (int i = 0; i < s; i++) {
-            alphaNum[i] = in.next().charAt(0);
-        }
+* `SELECT * FROM student;`
+  Retrieves all records from the **student** table.
 
-        int total = 0;
-        for (int i = 0; i < s; i++) {
-            int val = alphaNum[i] - 96; // 'a' = 97 in ASCII
-            total += val;
-        }
+## Data Insertion
 
-        System.out.println(total);
-    }
-}
-````
+* `INSERT INTO student(...) VALUES (...);`
+  Inserts a student record into the **student** table.
 
-### Sample Input
+* `INSERT INTO student(...) VALUES (...);`
+  Inserts another student record.
 
-```
-5
-a b c d e
-```
+* `INSERT INTO student(...) VALUES (...);`
+  Inserts another student record.
 
-### Sample Output
+## Conditional Query
 
-```
-15
-```
+* `SELECT * FROM student WHERE age=19;`
+  Fetches students whose age is **19**.
 
-### Constraints
+* `SELECT * FROM student;`
+  Displays all student records again.
 
-* Characters must be lowercase (`a` to `z`)
+## Table Modification
 
-[⬆ Back to Navigation](#navigation)
+* `ALTER TABLE student ADD gender VARCHAR(1);`
+  Adds a **gender** column to the student table.
 
----
+## Data Update
 
-<a id="qn2"></a>
+* `UPDATE student SET gender='M' WHERE reg_no=67;`
+  Updates gender for student with registration number **67**.
 
-## 2. Reverse Words in a Sentence
+* `UPDATE student SET gender='M' WHERE reg_no=76;`
+  Updates gender for student with registration number **76**.
 
-### Description
+* `UPDATE student SET gender='M' WHERE reg_no=101;`
+  Updates gender for student with registration number **101**.
 
-Given a sentence, reverse the order of its words and print the result.
+* `UPDATE student SET gender='M' WHERE reg_no=102;`
+  Updates gender for student with registration number **102**.
 
-### Input Format
+## Additional Insertions
 
-* A single line string containing words separated by spaces
+* `INSERT INTO student (...) VALUES (...);`
+  Inserts a new student with gender specified.
 
-### Output Format
+* `INSERT INTO student (...) VALUES (...);`
+  Inserts another student record with gender.
 
-* The sentence with words in reverse order
+* `INSERT INTO student (...) VALUES (...);`
+  Inserts another student record with gender.
 
-### Code
+## Table Rename
 
-```java
-import java.util.*;
-class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        String s1 = in.nextLine();
-        String[] part = s1.split(" ");
-
-        for (int i = part.length - 1; i >= 0; i--) {
-            System.out.print(part[i] + " ");
-        }
-    }
-}
-```
-
-### Sample Input
-
-```
-Java is powerful
-```
-
-### Sample Output
-
-```
-powerful is Java
-```
-
-[⬆ Back to Navigation](#navigation)
-
-<a id="qn3"></a>
-# 3.Binary to Decimal Conversion (N-bit)
-
-## Description
-
-This program converts a **binary number of variable length (N bits)** into its **decimal equivalent**.
-
-* First, it reads an integer `n` representing the number of binary digits.
-* Then it reads `n` binary values (`0` or `1`).
-* Finally, it converts the binary number into decimal and prints the result.
+* `RENAME TABLE student TO student_db;`
+  Renames the **student** table to **student_db**.
 
 ---
-
-## Input Format
-
-* Integer `n` — number of bits
-* `n` integers (`0` or `1`) separated by spaces
-
----
-
-## Output Format
-
-* A single integer representing the decimal value of the binary number
-
----
-
-## Code-1
-
-```java
-import java.util.*;
-class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int result = 0;
-        int n = in.nextInt();
-        int[] arr = new int[n];
-        int power = 0;
-
-        for (int i = 0; i < n; i++) {
-            arr[i] = in.nextInt();
-            if (arr[i]!=0 || arr[i]!=1) return;
-        }
-
-        for (int i = n - 1; i >= 0; i--) {
-            if (arr[i] == 1) {
-                result += Math.pow(2, power);
-                power++;
-            } else {
-                power++;
-            }
-        }
-
-        System.out.println(result);
-    }
-}
-```
-
-## Working Explanation
-
-### Step 1: Read Input
-
-* The program reads `n`, the number of bits.
-* An integer array of size `n` is created.
-* Each element is expected to be `0` or `1`.
-
----
-
-## More Examples
-
-### Input
-
-```
-4
-1 1 1 1
-```
-
-### Output
-
-```
-15
-```
-
----
-
-### Input
-
-```
-3
-0 0 1
-```
-
-### Output
-
-```
-1
-```
-
----
-
-## Constraints
-
-* `1 ≤ n`
-* Each element must be `0` or `1`
-
-### Option 2: No Array at All (FAANG-style)
-
-```java
-for (int i = 0; i < n; i++) {
-    int bit = in.nextInt();
-    if (bit != 0 && bit != 1) {
-        System.out.println("Invalid input");
-        return;
-    }
-    result = (result << 1) | bit;
-}
-```
-[⬆ Back to Navigation](#navigation)
-
----
-## 4. Find Index of Second Occurrence of a Character
-
-<a id="qn4"></a>
-
-### Description
-
-Given a string and a character, find the **index of the second occurrence** of the given character in the string.
-
-* If the character occurs **at least two times**, print the index of the second occurrence.
-* Otherwise, print `-1`.
-
----
-
-### Input Format
-
-* A string
-* A single character
-
----
-
-### Output Format
-
-* Integer representing the index of the second occurrence
-* `-1` if the character occurs fewer than two times
-
----
-
-### Code
-
-```java
-import java.util.*;
-class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        String str = in.nextLine();
-        char ch = in.next().charAt(0);
-        int count = 0;
-        int result = -1;
-
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == ch) {
-                count++;
-                result = i;
-            }
-
-            if (count == 2) {
-                System.out.println(result);
-                break;
-            }
-        }
-
-        if (count != 2) {
-            System.out.println(-1);
-        }
-    }
-}
-```
-
----
-
-### Sample Input
-
-```
-programming
-g
-```
-
----
-
-### Sample Output
-
-```
-10
-```
-# Optimized Code
-```
-import java.util.*;
-public class Main
-{
-	public static void main(String[] args) {
-	    Scanner sc=new Scanner(System.in);
-		String word=sc.nextLine();
-		char ch=sc.next().charAt(0);
-		int first=word.indexOf(ch);
-		int second = word.indexOf(ch, first+1);
-		System.out.println(second);
-
-	}
-}
-```
----
-
-### Explanation
-
-The character `'g'` appears at indices **3** and **10**.
-The index of the **second occurrence** is **10**, which is printed.
-
----
-
-### Constraints
-
-* String length ≥ 1
-* Input character must be a single character
-
----
-[⬆ Back to Navigation](#navigation)
-
-# 5.Check Order of an Array
-<a id ="qn5"></a>
-## Description
-Given an integer array, determine whether the elements are arranged in **Ascending**, **Descending**, or **Mixed** order.
-
-## Input Format
-- Integer `n` — number of elements
-- `n` integers representing the array elements
-
-## Output Format
-- Print one of the following:
-  - `Ascending`
-  - `Descending`
-  - `Mixed`
-
-## Code
-```java
-import java.util.*;
-class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int[] arr = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            arr[i] = in.nextInt();
-        }
-
-        boolean ascending = true;
-        boolean descending = true;
-
-        for (int i = 1; i < n; i++) {
-            if (arr[i] < arr[i - 1]) {
-                ascending = false;
-            } else if (arr[i] > arr[i - 1]) {
-                descending = false;
-            }
-        }
-
-        if (ascending && !descending) {
-            System.out.println("Ascending");
-        } else if (!ascending && descending) {
-            System.out.println("Descending");
-        } else if (ascending && descending) {
-            System.out.println("Ascending");
-        } else {
-            System.out.println("Mixed");
-        }
-    }
-}
-````
-
-## Sample Input 1
-
-```
-5
-1 2 3 4 5
-```
-
-## Sample Output 1
-
-```
-Ascending
-```
-
-## Sample Input 2
-
-```
-5
-9 7 5 3 1
-```
-
-## Sample Output 2
-
-```
-Descending
-```
-
-## Sample Input 3
-
-```
-5
-1 3 2 5 4
-```
-
-## Sample Output 3
-
-```
-Mixed
-```
-
-## Constraints
-
-* `1 ≤ n`
-* Array contains integers only
-
----
-[⬆ Back to Navigation](#navigation)
