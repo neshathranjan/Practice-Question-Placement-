@@ -6,6 +6,9 @@
 - [3.Binary to Decimal Conversion (N-bit)](#qn3)
 - [4.Find Index of Second Occurrence of a Character](#qn4)
 - [5.Check Order of an Array](#qn5)
+- [6.Count Numbers Divisible by 5 but Not by 10](#qn6)
+- [7.Count Numbers Without Digit 5](#qn7)
+- [8.Sum of Array Elements Excluding Minimum and Maximum](#qn8)
 ---
 
 <a id="qn1"></a>
@@ -438,3 +441,192 @@ Mixed
 
 ---
 [⬆ Back to Navigation](#navigation)
+
+# 6.Count Numbers Divisible by 5 but Not by 10
+<a id="qn6"></a>
+## Description
+Given two integers `s1` and `s2`, count how many numbers in the inclusive range satisfy the program’s logic and print the final count.
+
+## Input Format
+- Integer `s1` — starting value
+- Integer `s2` — ending value
+
+## Output Format
+- Integer representing the final count
+
+## Code
+```java
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int s1 = in.nextInt();
+        int s2 = in.nextInt();
+        int count = 0;
+
+        for (int i = s1; i <= s2; i++) {
+            if (i % 5 == 0 && i % 10 != 0)
+                count--;
+            count++;
+        }
+
+        System.out.println(count);
+    }
+}
+```
+# Sample Input
+```
+1 15
+```
+# Sample Output
+```
+12
+```
+
+Constraints
+
+- s1 ≤ s2
+- Inputs must be integers
+---
+
+<a id="qn7"></a>
+# 7.Count Numbers Without Digit 5
+
+## Description
+Given two integers `s1` and `s2`, count how many numbers in the inclusive range do **not** contain the digit `5`.
+
+## Input Format
+- Integer `s1` — starting value
+- Integer `s2` — ending value
+
+## Output Format
+- Integer representing the count of numbers without digit `5`
+
+## Code
+```java
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int s1 = in.nextInt();
+        int s2 = in.nextInt();
+        int count = 0;
+
+        for (int i = s1; i <= s2; i++) {
+            String str = Integer.toString(i);
+            if (!str.contains("5"))
+                count++;
+        }
+
+        System.out.println(count);
+    }
+}
+```
+# Sample Input
+```
+1 20
+```
+# Sample Output
+```
+18
+```
+[⬆ Back to Navigation](#navigation)
+---
+
+# 8.Sum of Array Elements Excluding Minimum and Maximum
+<a id="qn8"></a>
+## Description
+Given an integer array, calculate the sum of all elements **excluding the minimum and maximum values**.
+
+## Input Format
+- Integer `s` — number of elements
+- `s` integers
+
+## Output Format
+- Integer representing the sum excluding min and max
+
+---
+
+## Brute Force Solution
+
+```java
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int s = in.nextInt();
+        int[] arr = new int[s];
+
+        for (int i = 0; i < s; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        int max = arr[0];
+        int min = arr[0];
+
+        for (int i = 0; i < s; i++) {
+            if (arr[i] < min) min = arr[i];
+            else if (arr[i] > max) max = arr[i];
+        }
+
+        int total = 0;
+        for (int i = 0; i < s; i++) {
+            if (arr[i] == min || arr[i] == max)
+                continue;
+            total += arr[i];
+        }
+
+        System.out.println(total);
+    }
+}
+````
+
+---
+
+## Optimized Solution
+
+```java
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int s = in.nextInt();
+        int[] arr = new int[s];
+
+        for (int i = 0; i < s; i++) {
+            arr[i] = in.nextInt();
+        }
+
+        Arrays.sort(arr);
+
+        int sum = 0;
+        for (int i = 1; i < s - 1; i++) {
+            sum += arr[i];
+        }
+
+        System.out.println(sum);
+    }
+}
+```
+
+---
+
+## Sample Input
+
+```
+5
+1 2 3 4 5
+```
+
+## Sample Output
+
+```
+9
+```
+[⬆ Back to Navigation](#navigation)
+---
+## Constraints
+
+* `s ≥ 3`
+* Array contains integers only
+---
