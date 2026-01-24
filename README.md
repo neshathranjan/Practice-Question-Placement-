@@ -10,6 +10,7 @@
 - [7.Count Numbers Without Digit 5](#qn7)
 - [8.Sum of Array Elements Excluding Minimum and Maximum](#qn8)
 - [9. Count Sign Changes in an Array](#qn9)
+- [10. Convert Snake Case to Camel Case](#qn10)
 
 <a id="qn1"></a>
 ## 1. Alphabet Position Sum
@@ -685,3 +686,75 @@ class Main {
 s ≥ 1
 
 Array contains integers only
+---
+[⬆ Back to Navigation](#navigation)
+
+## 10. Convert Snake Case to Camel Case
+<a id ="qn10"></a>
+
+
+[⬅ Back to Index](#index)
+
+
+### Description
+Given a string in **snake_case**, remove underscores (`_`) and convert the following character to uppercase, producing a **camelCase** string.
+
+
+### Input Format
+- A single line string in snake_case
+
+
+### Output Format
+- The converted camelCase string
+
+
+### Code
+```java
+import java.util.*;
+
+
+public class Main {
+public static void main(String[] args) {
+Scanner in = new Scanner(System.in);
+String str = in.nextLine();
+
+
+StringBuilder sb = new StringBuilder();
+boolean uppercaseNext = false;
+
+
+for (int i = 0; i < str.length(); i++) {
+char ch = str.charAt(i);
+
+
+if (ch == '_') {
+uppercaseNext = true;
+} else {
+if (uppercaseNext) {
+sb.append(Character.toUpperCase(ch));
+uppercaseNext = false;
+} else {
+sb.append(ch);
+}
+}
+}
+
+
+System.out.println(sb.toString());
+}
+}
+```
+# Sample Input
+```
+java_programming_language
+```
+# Sample Output
+```
+javaProgrammingLanguage
+```
+
+# Constraints
+```
+Input string contains lowercase letters and underscores only
+```
+[⬅ Back to Index](#index)
