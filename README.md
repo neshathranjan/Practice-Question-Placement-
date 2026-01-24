@@ -634,7 +634,7 @@ class Main {
 
 ## 9. Count Sign Changes in an Array
 
-[⬅ Back to Index](#index)
+[⬅ Back to Index](#navigation)
 <a id="qn9"></a>
 ### Description
 Given an integer array, count how many times the sign of consecutive elements changes  
@@ -693,7 +693,7 @@ Array contains integers only
 <a id ="qn10"></a>
 
 
-[⬅ Back to Index](#index)
+[⬅ Back to Index](#navigation)
 
 
 ### Description
@@ -757,4 +757,4 @@ javaProgrammingLanguage
 ```
 Input string contains lowercase letters and underscores only
 ```
-[⬅ Back to Index](#index)
+[⬅ Back to Index](#navigation)
