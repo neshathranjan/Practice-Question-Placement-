@@ -1,75 +1,301 @@
-# SQL Student Database – README
+# 📘 SQL Reference Notes
 
-## Database Creation
+## Database Operations
 
-* `CREATE DATABASE college;`
-  Creates a new database named **college**.
+### Create Database
 
-* `USE college;`
-  Switches the active database to **college**.
+```sql
+CREATE DATABASE college;
+```
 
-## Table Creation
+Creates a new database named `college`.
 
-* `CREATE TABLE Student (...);`
-  Creates a **Student** table with constraints like primary key, NOT NULL, and age check.
+### Use Database
 
-## Data Retrieval
+```sql
+USE college;
+```
 
-* `SELECT * FROM student;`
-  Retrieves all records from the **student** table.
+Selects `college` as the active database.
 
-## Data Insertion
+---
 
-* `INSERT INTO student(...) VALUES (...);`
-  Inserts a student record into the **student** table.
+## Table Operations
 
-* `INSERT INTO student(...) VALUES (...);`
-  Inserts another student record.
+### Create Table
 
-* `INSERT INTO student(...) VALUES (...);`
-  Inserts another student record.
+```sql
+CREATE TABLE teacher_db(
+employeeID INT PRIMARY KEY,
+name VARCHAR(20),
+department VARCHAR(10),
+age INT
+);
+```
 
-## Conditional Query
+Creates a table with primary key and employee details.
 
-* `SELECT * FROM student WHERE age=19;`
-  Fetches students whose age is **19**.
+### Rename Table
 
-* `SELECT * FROM student;`
-  Displays all student records again.
+```sql
+RENAME TABLE teacher_db TO employeedetails;
+```
 
-## Table Modification
+Changes the table name.
 
-* `ALTER TABLE student ADD gender VARCHAR(1);`
-  Adds a **gender** column to the student table.
+### Add Column
 
-## Data Update
+```sql
+ALTER TABLE employeedetails ADD salary INT;
+```
 
-* `UPDATE student SET gender='M' WHERE reg_no=67;`
-  Updates gender for student with registration number **67**.
+Adds a new column `salary` to the table.
 
-* `UPDATE student SET gender='M' WHERE reg_no=76;`
-  Updates gender for student with registration number **76**.
+### Drop Column
 
-* `UPDATE student SET gender='M' WHERE reg_no=101;`
-  Updates gender for student with registration number **101**.
+```sql
+ALTER TABLE courses DROP COLUMN Credits;
+```
 
-* `UPDATE student SET gender='M' WHERE reg_no=102;`
-  Updates gender for student with registration number **102**.
+Deletes the `Credits` column from the `courses` table.
 
-## Additional Insertions
+---
 
-* `INSERT INTO student (...) VALUES (...);`
-  Inserts a new student with gender specified.
+## Insert Data
 
-* `INSERT INTO student (...) VALUES (...);`
-  Inserts another student record with gender.
+### Insert Records
 
-* `INSERT INTO student (...) VALUES (...);`
-  Inserts another student record with gender.
+```sql
+INSERT INTO employeedetails VALUES
+(5,'xxx','IT',28,64500),
+(6,'yyy','AIDS',50,55300);
+```
 
-## Table Rename
+Inserts multiple rows into the table.
 
-* `RENAME TABLE student TO student_db;`
-  Renames the **student** table to **student_db**.
+---
+
+## Data Retrieval (SELECT)
+
+### Select All Records
+
+```sql
+SELECT * FROM employeedetails;
+```
+
+Fetches all rows and columns.
+
+---
+
+## Filtering with WHERE
+
+### Greater Than / Less Than
+
+```sql
+SELECT * FROM teacher_db WHERE age > 24;
+```
+
+Filters records where age is greater than 24.
+
+### Using AND
+
+```sql
+SELECT * FROM teacher_db WHERE age >= 24 AND department='IT';
+```
+
+Applies multiple conditions using AND.
+
+### Using OR
+
+```sql
+SELECT * FROM teacher_db WHERE age <= 24 OR department='CSE';
+```
+
+Returns records matching at least one condition.
+
+---
+
+## Update Records
+
+### Update Salary
+
+```sql
+UPDATE employeedetails SET salary = 60000 WHERE employeeID = 1;
+```
+
+Updates salary for a specific employee.
+
+---
+
+## Range and Set Conditions
+
+### BETWEEN
+
+```sql
+SELECT * FROM employeedetails 
+WHERE salary BETWEEN 40000 AND 60000;
+```
+
+Selects values within a specified range.
+
+### IN
+
+```sql
+SELECT * FROM employeedetails 
+WHERE department IN('IT','CSE','ECE');
+```
+
+Filters rows matching multiple values.
+
+---
+
+## Pattern Matching (LIKE)
+
+### Starts With
+
+```sql
+SELECT * FROM employeedetails WHERE name LIKE 'N%';
+```
+
+Finds names starting with `N`.
+
+### Ends With
+
+```sql
+SELECT * FROM employeedetails WHERE name LIKE '%R';
+```
+
+Finds names ending with `R`.
+
+### Contains
+
+```sql
+SELECT * FROM employeedetails WHERE name LIKE '%esh%';
+```
+
+Finds names containing `esh`.
+
+---
+
+## Sorting (ORDER BY)
+
+### Ascending Order
+
+```sql
+SELECT * FROM employeedetails ORDER BY name;
+```
+
+Sorts records alphabetically by name.
+
+### Descending Order
+
+```sql
+SELECT * FROM employeedetails ORDER BY department DESC;
+```
+
+Sorts records in descending order.
+
+### Sort by Salary
+
+```sql
+SELECT department, salary 
+FROM employeedetails 
+ORDER BY salary ASC;
+```
+
+Sorts salaries in ascending order.
+
+---
+
+## Subqueries
+
+### Above Average Salary
+
+```sql
+SELECT name, salary 
+FROM employeedetails 
+WHERE salary > (
+    SELECT AVG(salary) FROM employeedetails
+);
+```
+
+Finds employees earning more than average salary.
+
+---
+
+## Aggregate Functions
+
+### Count Rows
+
+```sql
+SELECT COUNT(*) FROM employeedetails;
+```
+
+Returns total number of records.
+
+### Count by Column
+
+```sql
+SELECT COUNT(department) FROM employeedetails;
+```
+
+Counts non-null department values.
+
+### Sum
+
+```sql
+SELECT SUM(salary) FROM employeedetails;
+```
+
+Calculates total salary.
+
+### Average
+
+```sql
+SELECT AVG(age) FROM employeedetails;
+```
+
+Calculates average age.
+
+### Maximum
+
+```sql
+SELECT MAX(salary) FROM employeedetails;
+```
+
+Finds highest salary.
+
+### Minimum
+
+```sql
+SELECT MIN(salary) FROM employeedetails;
+```
+
+Finds lowest salary.
+
+---
+
+## Grouping and Having
+
+### Group By Department
+
+```sql
+SELECT department, COUNT(*) 
+FROM employeedetails 
+GROUP BY department;
+```
+
+Groups employees by department.
+
+### Group With Condition
+
+```sql
+SELECT department, COUNT(*) AS emp_count 
+FROM employeedetails 
+GROUP BY department 
+HAVING COUNT(*) > 1;
+```
+
+Filters grouped data using HAVING.
 
 ---
