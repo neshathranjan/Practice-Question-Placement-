@@ -299,3 +299,96 @@ HAVING COUNT(*) > 1;
 Filters grouped data using HAVING.
 
 ---
+# 🔗 SQL Joins
+
+## Inner Join
+
+```sql
+SELECT students.FirstName, students.lastname, courses.CourseID, courses.coursename
+FROM students
+INNER JOIN courses
+ON students.courseid = courses.courseid;
+```
+
+Returns only records that have matching values in both tables.
+
+## Left Join
+
+```sql
+SELECT students.firstname, students.courseid, courses.coursename
+FROM students
+LEFT JOIN courses
+ON students.courseid = courses.courseid;
+```
+
+Returns all records from the left table and matching records from the right table.
+
+## Right Join
+
+```sql
+SELECT students.firstname, students.courseid, courses.coursename
+FROM students
+RIGHT JOIN courses
+ON students.courseid = courses.courseid;
+```
+
+Returns all records from the right table and matching records from the left table.
+
+---
+
+# 💳 Database Transactions (Bank System)
+
+## Create Database
+
+```sql
+CREATE DATABASE bank;
+```
+
+Creates a new database named `bank`.
+
+## Use Database
+
+```sql
+USE bank;
+```
+
+Selects `bank` as the active database.
+
+---
+
+## Account Table
+
+## Transaction Control (TCL)
+
+### Commit
+
+```sql
+COMMIT;
+```
+
+Permanently saves all changes made in the transaction.
+
+### Start Transaction
+
+```sql
+START TRANSACTION;
+```
+
+Begins a new transaction block.
+
+### Rollback
+
+```sql
+ROLLBACK;
+```
+
+Reverts all changes made after the last commit.
+
+---
+
+```
+START TRANSACTION
+UPDATE
+ROLLBACK / COMMIT
+```
+---
